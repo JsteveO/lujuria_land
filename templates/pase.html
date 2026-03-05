@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lujuria University</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pase.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+<h1 class="title">LUJURIA UNIVERSITY</h1>
+
+
+<div class="card-container">
+
+<div class="card">
+
+<!-- FRENTE -->
+
+<div class="card-front">
+
+<img src="{{ url_for('static', filename='uploads/' + foto) if foto != 'default.png' else url_for('static', filename='images/default.png') }}" class="foto">
+
+<h2 class="nombre">{{nombre}}</h2>
+
+<p class="grado">Doctorado en Sex</p>
+
+<p class="fecha">4 de Abril</p>
+
+</div>
+
+
+<!-- ATRAS -->
+
+<div class="card-back">
+
+<h2>ADMISIÓN CONFIRMADA</h2>
+
+<p>505</p>
+
+<p>La Casa del Pecado</p>
+
+<p>x Bony León</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<button onclick="location.href='/'" class="btn-home">
+Volver al Inicio
+</button>
+
+
+</div>
+
+<script src="{{ url_for('static', filename='js/pase.js') }}"></script>
+<audio id="music" autoplay loop>
+    <source src="{{ url_for('static', filename='audio/Latigazo.mp3') }}" type="audio/mp3">
+</audio>
+</body>
+</html>
