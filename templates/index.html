@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LUJURIA</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<h1 class="title">LUJURIA</h1>
+
+<div class="container">
+
+<div class="image-section">
+
+<img id="carousel" src="{{ url_for('static', filename='images/img1.jpg') }}">
+
+</div>
+
+
+<div class="form-section">
+
+<div class="form-box">
+
+<h2>Registro exclusivo</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+<label>Nombre</label>
+<input type="text" name="nombre" required>
+
+<label>Género</label>
+<select name="genero" required>
+<option>Hombre</option>
+<option>Mujer</option>
+<option>Lgtbi+</option>
+</select>
+
+<label>WhatsApp</label>
+<input type="tel" name="whatsapp" pattern="[0-9]+" required>
+
+<label>Foto (opcional)</label>
+<input type="file" name="foto" accept="image/*">
+
+<button type="submit">
+Entrar a LUJURIA
+</button>
+
+</form>
+
+</div>
+
+<div class="logos">
+
+<img src="{{ url_for('static', filename='images/logo505.png') }}">
+<img src="{{ url_for('static', filename='images/Bony.png') }}">
+
+</div>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='js/confetti.js') }}"></script>
+<script>
+
+const music = document.getElementById("music")
+
+document.body.addEventListener("click", () => {
+
+music.play()
+
+}, { once: true })
+
+</script>
+<audio id="music" autoplay loop>
+    <source src="{{ url_for('static', filename='audio/Golden.wav') }}" type="audio/mp3">
+</audio>
+</body>
+
+</html>
