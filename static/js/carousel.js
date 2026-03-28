@@ -4,7 +4,6 @@ let images = [
 "/static/images/lujuria.jpeg",
 "/static/images/mica.jpeg",
 "/static/images/yepex.jpeg",
-"/static/images/esteban.jpeg",
 "/static/images/pao.jpeg",
 "/static/images/danier.jpeg"
 

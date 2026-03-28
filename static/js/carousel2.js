@@ -1,33 +1,37 @@
 let images = [
-
-"/static/images/lujuria.jpeg",
 "/static/images/todos.jpeg",
 "/static/images/chicas.jpeg",
-"/static/images/chicas1.jpeg",
 "/static/images/chicas2.jpeg",
-"/static/images/diablas.jpeg"
-
-
+"/static/images/diablas.jpeg",
+"/static/images/bony.jpeg",
+"/static/images/sal.jpeg",
+"/static/images/chicas3.jpeg",
+"/static/images/chicas4.jpeg"
 ]
 
-let pase = 0
-let img = document.getElementById("carousel2")
+let index = 0
 
-setInterval(()=>{
+let bgLeft = document.querySelector(".bg-left")
+let bgRight = document.querySelector(".bg-right")
 
-img.style.opacity = 0
+setInterval(() => {
 
-setTimeout(()=>{
+    index++
 
-pase++
+    if(index >= images.length){
+        index = 0
+    }
 
-if(pase >= images.length){
-index = 0
-}
+    // Imagen izquierda
+    bgLeft.style.backgroundImage = `
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url(${images[index]})
+    `
 
-img.src = images[pase]
-img.style.opacity = 1
+    // Imagen derecha (puedes usar otra lógica si quieres)
+    bgRight.style.backgroundImage = `
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url(${images[(index + 1) % images.length]})
+    `
 
-},500)
-
-},3000)
+}, 3000)

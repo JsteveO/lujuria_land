@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-
+<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -16,7 +16,7 @@
 
 <canvas id="confetti"></canvas>
 
-<h1 class="title">LUJURIA UNIVERSITY</h1>
+<!--<h1 class="title">LUJURIA UNIVERSITY</h1>-->
 
 <div class="container">
 
@@ -40,6 +40,7 @@
 
 <label>Edad</label>
 <select name="edad" required>
+<option value="" disabled selected>Selecciona tu edad</option>
 <option>15-17</option>
 <option>18-24</option>
 <option>25+</option>
@@ -47,6 +48,7 @@
 
 <label>Género</label>
 <select name="genero" required>
+ <option value="" disabled selected>Selecciona tu género</option>
 <option>Hombre</option>
 <option>Mujer</option>
 <option>Lgtbi+</option>
@@ -90,8 +92,8 @@ music.play()
 }, { once: true })
 
 </script>
-<audio id="music" autoplay loop>
-    <source src="{{ url_for('static', filename='audio/Golden.wav') }}" type="audio/mp3">
+<audio id="music" autoplay loop> 
+    <source src="{{ url_for('static', filename='audio/Golden.wav') }}" type="audio/mp3"> 
 </audio>
 </body>
 

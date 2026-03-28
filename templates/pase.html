@@ -21,11 +21,6 @@
 
 <h1 class="title">LUJURIA UNIVERSITY</h1>
 
-<!-- <div class="image-section">
-
-<img id="carousel2" src="{{ url_for('static', filename='images/lujuria.jpeg') }}">
-
-</div> -->
 
 <div class="card-container">
 
@@ -33,30 +28,46 @@
 
 <!-- FRENTE -->
 
-<div class="card-front">
+<div class="card-front {% if genero == 'Lgtbi+' %}card-lgtbi{% endif %}">
 
-<img src="{{ url_for('static', filename='uploads/' + foto) if foto != 'default.png' else url_for('static', filename='images/default.png') }}" class="foto">
+<img src="{{ url_for('static', filename=foto) }}" class="foto">
 
 <h2 class="nombre">{{nombre}}</h2>
 <h2 class="edad">{{edad}}</h2>
 
-<p class="grado">Doctorado en Sex</p>
+{% if edad == "15-17" %}
 
-<p class="fecha">4 de Abril</p>
+    <p style="color:red;">ADMISIÓN DENEGADA</p>
+    <p style="color:red;">Acceso restringido 🔞</p>
+
+{% else %}
+
+    <p class="grado">Doctorado en Sex</p>
+    <p class="fecha">4 de Abril</p>
+
+{% endif %}
+
 
 </div>
 
 
 <!-- ATRAS -->
 
-<div class="card-back">
+<div class="card-back {% if genero == 'Lgtbi+' %}card-lgtbi{% endif %}">
 
 <img src="{{ url_for('static', filename='images/logo505.png') }}" class="logo-505">    
-<h2>ADMISIÓN CONFIRMADA</h2>
+{% if edad == "15-17" %}
 
-<p>La Casa del Pecado</p>
+    <h2 style="color:red;">ADMISIÓN DENEGADA</h2>
+    <p style="color:red;">Acceso restringido 🔞</p>
 
-<p>feat. BONY LEON</p>
+{% else %}
+
+    <h2>ADMISIÓN CONFIRMADA</h2>
+    <p>La Casa del Pecado</p>
+    <p>feat. BONY LEON</p>
+
+{% endif %}
 
 </div>
 
@@ -72,6 +83,7 @@ Volver al Inicio
 
 </div>
 
+<script src="{{ url_for('static', filename='js/carousel2.js') }}"></script>
 <script src="{{ url_for('static', filename='js/pase.js') }}"></script>
 <audio id="music" autoplay loop>
     <source src="{{ url_for('static', filename='audio/Latigazo.mp3') }}" type="audio/mp3">

@@ -18,6 +18,7 @@ text-transform:uppercase;
 .bg-left,
 .bg-right{
 
+transition: background-image 0.5s ease-in-out;
 position:fixed;
 top:0;
 width:50%;
@@ -187,6 +188,14 @@ font-size:13px;
 letter-spacing:2px;
 opacity:0.8;
 margin:0;
+}
+
+.card-lgtbi{
+    background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),
+    url("../images/lujuriagei.png") no-repeat center center;
+
+    background-size: cover;
 }
 
 .foto{

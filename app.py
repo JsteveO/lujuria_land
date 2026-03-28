@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file
 import os
 import time
 
@@ -30,13 +30,17 @@ def register():
         filename = f"{nombre_archivo}{whatsapp}.jpg"
         ruta = os.path.join(app.config["UPLOAD_FOLDER"], filename)
         foto.save(ruta)
+
+        limpiar_uploads(app.config["UPLOAD_FOLDER"], limite=10)
+
+        foto = f"uploads/{filename}"
     else:
-        filename = "default.png"
+        foto = "images/todos.jpeg"
 
     with open("registros.txt", "a", encoding="utf-8") as f:
         f.write(f"{nombre},{genero},{whatsapp},{edad},{filename}\n")
 
-    return redirect(url_for("pase", nombre=nombre, edad=edad, foto=filename))
+    return redirect(url_for("pase", nombre=nombre, edad=edad, foto=foto, genero=genero))
 
 
 @app.route("/pase")
@@ -45,19 +49,36 @@ def pase():
     nombre = request.args.get("nombre")
     edad = request.args.get("edad")
     foto = request.args.get("foto")
+    genero = request.args.get("genero")
 
-    return render_template("pase.html", nombre=nombre,edad=edad, foto=foto)
+    return render_template("pase.html", nombre=nombre,edad=edad, foto=foto, genero=genero)
 
-from flask import send_file
+
+
+
+def limpiar_uploads(carpeta, limite=10):
+    archivos = [
+        os.path.join(carpeta, f)
+        for f in os.listdir(carpeta)
+        if os.path.isfile(os.path.join(carpeta, f))
+    ]
+
+    # Ordenar por fecha de creación (más antiguos primero)
+    archivos.sort(key=os.path.getctime)
+
+    # Si hay más del límite → borrar los más viejos
+    while len(archivos) > limite:
+        archivo_a_borrar = archivos.pop(0)
+        os.remove(archivo_a_borrar)
 
 @app.route("/descargar")
 def descargar():
     return send_file("registros.txt", as_attachment=True)
 
 
-'''if __name__ == "__main__":
-    app.run(debug=True)'''
-
 if __name__ == "__main__":
+    app.run(debug=True)
+
+'''if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port)'''
