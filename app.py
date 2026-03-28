@@ -48,6 +48,12 @@ def pase():
 
     return render_template("pase.html", nombre=nombre,edad=edad, foto=foto)
 
+from flask import send_file
+
+@app.route("/descargar")
+def descargar():
+    return send_file("registros.txt", as_attachment=True)
+
 
 '''if __name__ == "__main__":
     app.run(debug=True)'''
