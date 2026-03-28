@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Lujuria University</title>
+<subtitle>Tomale Captura</subtitle>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pase.css') }}">
 
@@ -13,11 +14,18 @@
 
 
 <body>
+<div class="bg-left"></div>
+<div class="bg-right"></div>
 
 <div class="page">
 
 <h1 class="title">LUJURIA UNIVERSITY</h1>
 
+<!-- <div class="image-section">
+
+<img id="carousel2" src="{{ url_for('static', filename='images/lujuria.jpeg') }}">
+
+</div> -->
 
 <div class="card-container">
 
@@ -30,6 +38,7 @@
 <img src="{{ url_for('static', filename='uploads/' + foto) if foto != 'default.png' else url_for('static', filename='images/default.png') }}" class="foto">
 
 <h2 class="nombre">{{nombre}}</h2>
+<h2 class="edad">{{edad}}</h2>
 
 <p class="grado">Doctorado en Sex</p>
 
@@ -42,13 +51,12 @@
 
 <div class="card-back">
 
+<img src="{{ url_for('static', filename='images/logo505.png') }}" class="logo-505">    
 <h2>ADMISIÓN CONFIRMADA</h2>
-
-<p>505</p>
 
 <p>La Casa del Pecado</p>
 
-<p>x Bony León</p>
+<p>feat. BONY LEON</p>
 
 </div>
 

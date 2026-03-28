@@ -1,9 +1,13 @@
 
 let images = [
 
-"/static/images/lujuria1.png",
-"/static/images/lujuria2.jpg",
-"/static/images/lujuria3.webp"
+"/static/images/lujuria.jpeg",
+"/static/images/mica.jpeg",
+"/static/images/yepex.jpeg",
+"/static/images/esteban.jpeg",
+"/static/images/pao.jpeg",
+"/static/images/danier.jpeg"
+
 
 ]
 

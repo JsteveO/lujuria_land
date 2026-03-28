@@ -19,6 +19,7 @@ def register():
     nombre = request.form["nombre"]
     genero = request.form["genero"]
     whatsapp = request.form["whatsapp"]
+    edad = request.form["edad"]
 
     foto = request.files["foto"]
 
@@ -33,18 +34,19 @@ def register():
         filename = "default.png"
 
     with open("registros.txt", "a", encoding="utf-8") as f:
-        f.write(f"{nombre},{genero},{whatsapp},{filename}\n")
+        f.write(f"{nombre},{genero},{whatsapp},{edad},{filename}\n")
 
-    return redirect(url_for("pase", nombre=nombre, foto=filename))
+    return redirect(url_for("pase", nombre=nombre, edad=edad, foto=filename))
 
 
 @app.route("/pase")
 def pase():
 
     nombre = request.args.get("nombre")
+    edad = request.args.get("edad")
     foto = request.args.get("foto")
 
-    return render_template("pase.html", nombre=nombre, foto=foto)
+    return render_template("pase.html", nombre=nombre,edad=edad, foto=foto)
 
 
 if __name__ == "__main__":

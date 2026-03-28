@@ -14,6 +14,7 @@ overflow:hidden;
 /* TITLE */
 
 .title{
+font-family: "Georgia", "Times New Roman", serif;
 position:absolute;
 top:20px;
 width:100%;

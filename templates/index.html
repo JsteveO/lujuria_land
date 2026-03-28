@@ -16,13 +16,13 @@
 
 <canvas id="confetti"></canvas>
 
-<h1 class="title">LUJURIA</h1>
+<h1 class="title">LUJURIA UNIVERSITY</h1>
 
 <div class="container">
 
 <div class="image-section">
 
-<img id="carousel" src="{{ url_for('static', filename='images/lujuria1.png') }}">
+<img id="carousel" src="{{ url_for('static', filename='images/lujuria.jpeg') }}">
 
 </div>
 
@@ -37,6 +37,13 @@
 
 <label>Nombre</label>
 <input type="text" name="nombre" required>
+
+<label>Edad</label>
+<select name="edad" required>
+<option>15-17</option>
+<option>18-24</option>
+<option>25+</option>
+</select>
 
 <label>Género</label>
 <select name="genero" required>
