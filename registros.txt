@@ -1,2 +1,4 @@
 Jhon Stiven,Hombre,3013510480,jhon_stiven3013510480.jpg
 jhon olano,Hombre,3013510480,jhon_olano3013510480.jpg
+bony,Lgtbi+,12345,18-24,
+jhon stiven,Hombre,30142,25+,jhon_stiven30142.jpg
