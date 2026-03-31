@@ -1,12 +1,26 @@
 from flask import Flask, render_template, request, redirect, url_for, send_file
 import os
 import time
+import json
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 app = Flask(__name__)
 
 UPLOAD_FOLDER = "static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
+
+scope = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/drive"
+]
+
+credenciales_json = json.loads(os.environ["GOOGLE_CREDENTIALS"])
+creds = ServiceAccountCredentials.from_json_keyfile_dict(credenciales_json, scope)
+client = gspread.authorize(creds)
+
+sheet = client.open("data_lujuria").sheet1
 
 @app.route("/")
 def index():
@@ -39,6 +53,18 @@ def register():
 
     with open("registros.txt", "a", encoding="utf-8") as f:
         f.write(f"{nombre},{genero},{whatsapp},{edad},{filename}\n")
+
+    try:
+        sheet.append_row([
+            nombre,
+            genero,
+            whatsapp,
+            edad,
+            foto,
+            time.strftime("%Y-%m-%d %H:%M:%S")
+        ])
+    except Exception as e:
+        print("Error guardando en Sheets:", e)
 
     return redirect(url_for("pase", nombre=nombre, edad=edad, foto=foto, genero=genero))
 
@@ -76,9 +102,9 @@ def descargar():
     return send_file("registros.txt", as_attachment=True)
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
 '''if __name__ == "__main__":
+    app.run(debug=True)'''
+
+if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)'''
+    app.run(host="0.0.0.0", port=port)
