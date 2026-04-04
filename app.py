@@ -17,9 +17,9 @@ scope = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-#credenciales_json = json.loads(os.environ["GOOGLE_CREDENTIALS"])
-#creds = ServiceAccountCredentials.from_json_keyfile_dict(credenciales_json, scope)
-creds = ServiceAccountCredentials.from_json_keyfile_name("credenciales.json", scope)
+credenciales_json = json.loads(os.environ["GOOGLE_CREDENTIALS"])
+creds = ServiceAccountCredentials.from_json_keyfile_dict(credenciales_json, scope)
+#creds = ServiceAccountCredentials.from_json_keyfile_name("credenciales.json", scope)
 client = gspread.authorize(creds)
 
 sheet = client.open("data_lujuria").sheet1
@@ -128,9 +128,9 @@ def search():
         return {"error": str(e)}
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
 '''if __name__ == "__main__":
+    app.run(debug=True)'''
+    
+if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)'''
+    app.run(host="0.0.0.0", port=port)
