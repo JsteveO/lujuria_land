@@ -5,6 +5,7 @@ import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+
 app = Flask(__name__)
 
 UPLOAD_FOLDER = "static/uploads"
@@ -16,8 +17,9 @@ scope = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-credenciales_json = json.loads(os.environ["GOOGLE_CREDENTIALS"])
-creds = ServiceAccountCredentials.from_json_keyfile_dict(credenciales_json, scope)
+#credenciales_json = json.loads(os.environ["GOOGLE_CREDENTIALS"])
+#creds = ServiceAccountCredentials.from_json_keyfile_dict(credenciales_json, scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name("credenciales.json", scope)
 client = gspread.authorize(creds)
 
 sheet = client.open("data_lujuria").sheet1
@@ -101,10 +103,34 @@ def limpiar_uploads(carpeta, limite=10):
 def descargar():
     return send_file("registros.txt", as_attachment=True)
 
+@app.route("/search")
+def search():
+    nombre = request.args.get("Nombre")
+    whatsapp = request.args.get("telefono")
 
-'''if __name__ == "__main__":
-    app.run(debug=True)'''
+    if not nombre and not whatsapp:
+        return render_template("search.html", resultados=None)
+
+    try:
+        datos = sheet.get_all_records()  # trae todo como lista de diccionarios
+        
+        resultados = []
+
+        for fila in datos:
+            if nombre and nombre.lower() in fila["Nombre"].lower():
+                resultados.append(fila)
+            elif whatsapp and str(fila["telefono"]) == whatsapp:
+                resultados.append(fila)
+
+        return render_template("search.html", resultados=resultados)
+
+    except Exception as e:
+        return {"error": str(e)}
+
 
 if __name__ == "__main__":
+    app.run(debug=True)
+
+'''if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port)'''

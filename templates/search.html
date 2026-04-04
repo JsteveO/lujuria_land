@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LUJURIA</title>
+</head>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+<body>
+
+    <h2>Buscar Registro</h2>
+
+    <form action="/search" method="GET">
+        <label>Nombre</label><br>
+        <input type="text" name="Nombre"><br><br>
+
+        <label>WhatsApp</label><br>
+        <input type="text" name="telefono"><br><br>
+
+        <button type="submit">Consultar</button>
+    </form>
+
+    <hr>
+
+    <h3>Resultados</h3>
+
+    {% if resultados is not none %}
+
+        {% if resultados %}
+            <table border="1">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Género</th>
+                    <th>WhatsApp</th>
+                    <th>Edad</th>
+                </tr>
+
+                {% for r in resultados %}
+                <tr>
+                    <td data-label="Nombre">{{ r['Nombre'] }}</td>
+                    <td data-label="Género">{{ r['Genero'] }}</td>
+                    <td data-label="WhatsApp">{{ r['telefono'] }}</td>
+                    <td data-label="Edad">{{ r['edad'] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No se encontraron resultados</p>
+        {% endif %}
+
+    {% endif %}
+
+</body>
+</html>
